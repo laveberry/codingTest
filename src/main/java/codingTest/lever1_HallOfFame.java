@@ -32,27 +32,24 @@ import java.util.Collections;
  아래와 같이, [0, 0, 0, 0, 20, 40, 70, 70, 150, 300]을 return합니다. 그림2.png
  * */
 public class lever1_HallOfFame {
-        public int[] solution(int k, int[] score) {
-            int[] answer = new int[score.length];
-            ArrayList<Integer> scoList = new ArrayList<>();
+    public int[] solution(int k, int[] score) {
+        int[] answer = new int[score.length];
+        ArrayList<Integer> scoList = new ArrayList<>();
 
-            for(int i=0 ; i<score.length ; i++){
-                if(i<k){
+        for(int i=0 ; i<score.length ; i++){
+            if(i<k){
+                scoList.add(score[i]);
+                //Collections.sort(scoList, Collections.reverseOrder());
+            }else{
+                if(scoList.get(0) < score[i]){
+                    scoList.remove(0);
                     scoList.add(score[i]);
-                    //Collections.sort(scoList, Collections.reverseOrder());
-                }else{
-                    if(scoList.get(0) < score[i]){
-                        scoList.remove(0);
-                        scoList.add(score[i]);
-                    }
                 }
-                Collections.sort(scoList);
-                answer[i] = scoList.get(0);
             }
-
-            return answer;
+            Collections.sort(scoList);
+            answer[i] = scoList.get(0);
         }
+
+        return answer;
     }
-
-
 }
